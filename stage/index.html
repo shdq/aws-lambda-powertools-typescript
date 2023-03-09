@@ -513,12 +513,15 @@ You're not viewing the latest version.
 <p>When using Layers, you can add Lambda Powertools as a <code>devDependency</code> to not impact the development process.</p>
 </details>
 <h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
-<p>Powertools is available in the following formats:</p>
+<p>You can install Powertools using one of the following options:</p>
 <ul>
 <li><strong>Lambda Layer</strong>: <a class="copyMe" href="#"><strong>arn:aws:lambda:{region}:094274105915:layer:AWSLambdaPowertoolsTypeScript:9</strong></a><img alt="📋" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f4cb.svg" title=":clipboard:" /></li>
-<li><strong>npm</strong>: <strong><code>npm install @aws-lambda-powertools/tracer @aws-lambda-powertools/metrics @aws-lambda-powertools/logger</code></strong></li>
+<li><strong>npm</strong>: <a class="copyMe" href="#"><code>npm install @aws-lambda-powertools/tracer @aws-lambda-powertools/metrics @aws-lambda-powertools/logger</code></a><img alt="📋" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f4cb.svg" title=":clipboard:" /></li>
 </ul>
 <h3 id="lambda-layer">Lambda Layer<a class="headerlink" href="#lambda-layer" title="Permanent link">&para;</a></h3>
+<details class="warning" open="open">
+<summary>As of now, Container Image deployment (OCI) or inline Lambda functions do not support Lambda Layers.</summary>
+</details>
 <p><a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html" target="_blank">Lambda Layer</a> is a .zip file archive that can contain additional code, pre-packaged dependencies, data,  or configuration files. Layers promote code sharing and separation of responsibilities so that you can iterate faster on writing business logic.</p>
 <p>You can include Lambda Powertools Lambda Layer using <a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html#invocation-layers-using" target="_blank">AWS Lambda Console</a>, or your preferred deployment framework.</p>
 <details class="note">
@@ -636,7 +639,7 @@ You're not viewing the latest version.
 </details>
 <details class="note">
 <summary>Note: Click to expand and copy code snippets for popular frameworks</summary>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">SAM</label><label for="__tabbed_1_2">Serverless framework</label><label for="__tabbed_1_3">CDK</label><label for="__tabbed_1_4">Terraform</label><label for="__tabbed_1_5">Pulumi</label><label for="__tabbed_1_6">Amplify</label><label for="__tabbed_1_7">Get the Layer .zip contents</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:6"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">SAM</label><label for="__tabbed_1_2">Serverless framework</label><label for="__tabbed_1_3">CDK</label><label for="__tabbed_1_4">Terraform</label><label for="__tabbed_1_5">Pulumi</label><label for="__tabbed_1_6">Amplify</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -910,17 +913,18 @@ General<span class="w"> </span>information
 ?<span class="w"> </span>Do<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>edit<span class="w"> </span>the<span class="w"> </span><span class="nb">local</span><span class="w"> </span>lambda<span class="w"> </span><span class="k">function</span><span class="w"> </span>now?<span class="w"> </span>No
 </code></pre></div></td></tr></table></div>
 </div>
-<div class="tabbed-block">
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">AWS CLI</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>get-layer-version-by-arn<span class="w"> </span>--arn<span class="w"> </span>arn:aws:lambda:<span class="o">{</span>aws::region<span class="o">}</span>:094274105915:layer:AWSLambdaPowertoolsTypeScript:9<span class="w"> </span>--region<span class="w"> </span><span class="o">{</span>region<span class="o">}</span>
-</code></pre></div></td></tr></table></div>
-<p>The pre-signed URL to download this Lambda Layer will be within <code>Location</code> key.</p>
-</div>
 </div>
 </div>
 </details>
-<details class="warning" open="open">
-<summary>Warning: Limitations</summary>
-<p>Container Image deployment (OCI) or inline Lambda functions do not support Lambda Layers.</p>
+<div class="admonition info">
+<p class="admonition-title">Using Powertools via Lambda Layer? Simply add the Powertools utilities you are using as a development dependency.</p>
+</div>
+<details class="question">
+<summary>Want to inspect the contents of the Layer?</summary>
+<p>Change {region} to your AWS region, e.g. <code>eu-west-1</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">AWS CLI</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>get-layer-version-by-arn<span class="w"> </span>--arn<span class="w"> </span>arn:aws:lambda:<span class="o">{</span>aws::region<span class="o">}</span>:094274105915:layer:AWSLambdaPowertoolsTypeScript:9<span class="w"> </span>--region<span class="w"> </span><span class="o">{</span>region<span class="o">}</span>
+</code></pre></div></td></tr></table></div>
+<p>The pre-signed URL to download this Lambda Layer will be within <code>Location</code> key.</p>
 </details>
 <h2 id="instrumentation">Instrumentation<a class="headerlink" href="#instrumentation" title="Permanent link">&para;</a></h2>
 <p>You can instrument your code with Powertools in three different ways:  </p>
@@ -1055,7 +1059,7 @@ General<span class="w"> </span>information
   <small>
     
       Last update:
-      2023-03-02
+      2023-03-08
     
   </small>
 </div>
