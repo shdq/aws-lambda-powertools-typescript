@@ -1,5 +1,5 @@
-import { LogFormatterInterface } from '.';
-import { LogAttributes, UnformattedAttributes } from '../types';
+import { LogFormatterInterface } from './index.js';
+import { LogAttributes, UnformattedAttributes } from '../types/index.js';
 
 /**
  * This class defines and implements common methods for the formatting of log attributes.

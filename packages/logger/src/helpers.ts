@@ -1,5 +1,5 @@
-import { Logger } from '.';
-import { ConstructorOptions } from './types';
+import { Logger } from './Logger.js';
+import type { ConstructorOptions } from './types/index.js';
 
 const createLogger = (options: ConstructorOptions = {}): Logger => new Logger(options);
 

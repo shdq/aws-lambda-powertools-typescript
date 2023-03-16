@@ -1,6 +1,6 @@
-import { LogFormatter } from '.';
-import { UnformattedAttributes } from '../types';
-import { PowertoolLog } from '../types/formats';
+import { LogFormatter } from './index.js';
+import { UnformattedAttributes } from '../types/index.js';
+import { PowertoolLog } from '../types/formats/index.js';
 
 /**
  * This class is used to transform a set of log key-value pairs
