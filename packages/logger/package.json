@@ -18,7 +18,8 @@
     "test:e2e:nodejs18x": "RUNTIME=nodejs18x jest --group=e2e",
     "test:e2e": "jest --group=e2e",
     "watch": "jest --watch --group=unit",
-    "build": "tsc",
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && echo 'Building Logger...' && tsc -b ./tsconfig.esm.json ./tsconfig.cjs.json ./tsconfig.types.json && node ./generate-package-json-with-module-type.js",
     "lint": "eslint --ext .ts --no-error-on-unmatched-pattern src tests",
     "lint-fix": "eslint --fix --ext .ts --no-error-on-unmatched-pattern src tests",
     "package": "mkdir -p dist/ && npm pack && mv *.tgz dist/",
@@ -31,8 +32,17 @@
   },
   "homepage": "https://github.com/awslabs/aws-lambda-powertools-typescript/tree/main/packages/logging#readme",
   "license": "MIT",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js",
+      "default": "./lib/esm/index.js"
+    }
+  },
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/ems/index.js",
+  "types": "./lib/types/index.d.ts",
   "typedocMain": "src/index.ts",
   "devDependencies": {
     "@types/lodash.merge": "^4.6.7"
