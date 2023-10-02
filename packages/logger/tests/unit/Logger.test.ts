@@ -1965,7 +1965,7 @@ describe('Class: Logger', () => {
       const options: ConstructorOptions = {
         logLevel: 'ERROR',
         serviceName: 'test-service-name',
-        sampleRateValue: 0.77,
+        sampleRateValue: 1,
         logFormatter: new MyCustomLogFormatter(),
         customConfigService: new MyCustomEnvironmentVariablesService(),
         persistentLogAttributes: {
@@ -1983,6 +1983,7 @@ describe('Class: Logger', () => {
       expect(childLogger).toEqual({
         ...parentLogger,
         console: expect.any(Console),
+        logLevel: 8, // 100% sampling rate changes "ERROR" log level to "DEBUG"
       });
 
       expect(childLogger).toEqual(

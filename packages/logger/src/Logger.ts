@@ -155,8 +155,6 @@ class Logger extends Utility implements ClassThatLogs {
     SILENT: 28,
   };
 
-  private logsSampled = false;
-
   private persistentLogAttributes?: LogAttributes = {};
 
   private powertoolLogData: PowertoolLogData = <PowertoolLogData>{};
@@ -309,15 +307,6 @@ class Logger extends Utility implements ClassThatLogs {
   }
 
   /**
-   * It returns a boolean value, if true all the logs will be printed.
-   *
-   * @returns {boolean}
-   */
-  public getLogsSampled(): boolean {
-    return this.logsSampled;
-  }
-
-  /**
    * It returns the persistent log attributes, which are the attributes
    * that will be logged in all log items.
    *
@@ -456,18 +445,6 @@ class Logger extends Utility implements ClassThatLogs {
   }
 
   /**
-   * If the sample rate feature is enabled, the calculation that determines whether the logs
-   * will actually be printed or not for this invocation is done when the Logger class is
-   * initialized.
-   * This method will repeat that calculation (with possible different outcome).
-   *
-   * @returns {void}
-   */
-  public refreshSampleRateCalculation(): void {
-    this.setLogsSampled();
-  }
-
-  /**
    * Alias for removePersistentLogAttributes.
    *
    * @param {string[]} keys
@@ -565,27 +542,6 @@ class Logger extends Utility implements ClassThatLogs {
   }
 
   /**
-   * Decides whether the current log item should be printed or not.
-   *
-   * The decision is based on the log level and the sample rate value.
-   * A log item will be printed if:
-   * 1. The log level is greater than or equal to the Logger's log level.
-   * 2. The log level is less than the Logger's log level, but the
-   * current sampling value is set to `true`.
-   *
-   * @param {number} logLevel
-   * @returns {boolean}
-   * @protected
-   */
-  protected shouldPrint(logLevel: number): boolean {
-    if (logLevel >= this.logLevel) {
-      return true;
-    }
-
-    return this.getLogsSampled();
-  }
-
-  /**
    * It stores information that is printed in all log items.
    *
    * @param {Partial<PowertoolLogData>} attributesArray
@@ -598,6 +554,20 @@ class Logger extends Utility implements ClassThatLogs {
     attributesArray.forEach((attributes: Partial<PowertoolLogData>) => {
       merge(this.powertoolLogData, attributes);
     });
+  }
+
+  /**
+   *
+   */
+  private configureSampling(): void {
+    const sampleRateValue = this.getSampleRateValue();
+    if (
+      sampleRateValue &&
+      Math.random() <= parseFloat(sampleRateValue.toString())
+    ) {
+      this.debug('Setting log level to DEBUG due to sampling rate');
+      this.setLogLevel('DEBUG');
+    }
   }
 
   /**
@@ -817,13 +787,12 @@ class Logger extends Utility implements ClassThatLogs {
     input: LogItemMessage,
     extraInput: LogItemExtraInput
   ): void {
-    if (!this.shouldPrint(logLevel)) {
-      return;
+    if (logLevel >= this.logLevel) {
+      this.printLog(
+        logLevel,
+        this.createAndPopulateLogItem(logLevel, input, extraInput)
+      );
     }
-    this.printLog(
-      logLevel,
-      this.createAndPopulateLogItem(logLevel, input, extraInput)
-    );
   }
 
   /**
@@ -944,20 +913,6 @@ class Logger extends Utility implements ClassThatLogs {
   }
 
   /**
-   * If the sample rate feature is enabled, it sets a property that tracks whether this Lambda function invocation
-   * will print logs or not.
-   *
-   * @private
-   * @returns {void}
-   */
-  private setLogsSampled(): void {
-    const sampleRateValue = this.getSampleRateValue();
-    this.logsSampled =
-      sampleRateValue !== undefined &&
-      (sampleRateValue === 1 || randomInt(0, 100) / 100 <= sampleRateValue);
-  }
-
-  /**
    * It configures the Logger instance settings that will affect the Logger's behaviour
    * and the content of all logs.
    *
@@ -982,11 +937,11 @@ class Logger extends Utility implements ClassThatLogs {
     this.setCustomConfigService(customConfigService);
     this.setInitialLogLevel(logLevel);
     this.setSampleRateValue(sampleRateValue);
-    this.setLogsSampled();
     this.setLogFormatter(logFormatter);
     this.setPowertoolLogData(serviceName, environment);
     this.setLogEvent();
     this.setLogIndentation();
+    this.configureSampling();
 
     this.addPersistentLogAttributes(persistentLogAttributes);
 
