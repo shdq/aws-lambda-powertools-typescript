@@ -803,7 +803,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -1548,44 +1547,23 @@ describe('Class: Logger', () => {
     });
   });
 
-  describe('Method: refreshSampleRateCalculation', () => {
-    test('it recalculates whether the current Lambda invocation logs will be printed or not', () => {
-      // Prepare
-      const logger = new Logger({
-        logLevel: 'ERROR',
-        sampleRateValue: 0.1, // 10% probability
-      });
-      let logsSampledCount = 0;
-
-      // Act
-      for (let i = 0; i < 1000; i++) {
-        logger.refreshSampleRateCalculation();
-        if (logger.getLogsSampled() === true) {
-          logsSampledCount++;
-        }
-      }
-
-      // Assess
-      expect(logsSampledCount > 50).toBe(true);
-      expect(logsSampledCount < 150).toBe(true);
-    });
-  });
-
   describe('Method: createChild', () => {
     test('child and grandchild loggers should have all the options of its ancestor', () => {
       // Prepare
       const INDENTATION = LogJsonIndent.COMPACT;
-      const loggerOptions = {
+      const loggerOptions: ConstructorOptions = {
         serviceName: 'parent-service-name',
         sampleRateValue: 0,
       };
       const parentLogger = new Logger(loggerOptions);
 
       // Act
-      const childLoggerOptions = { sampleRateValue: 1 };
+      const childLoggerOptions: ConstructorOptions = { sampleRateValue: 1 };
       const childLogger = parentLogger.createChild(childLoggerOptions);
 
-      const grandchildLoggerOptions = { serviceName: 'grandchild-logger-name' };
+      const grandchildLoggerOptions: ConstructorOptions = {
+        serviceName: 'grandchild-logger-name',
+      };
       const grandchildLogger = childLogger.createChild(grandchildLoggerOptions);
 
       // Assess
@@ -1606,7 +1584,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -1629,7 +1606,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: true,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -1652,7 +1628,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: true,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -1718,7 +1693,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -1741,7 +1715,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {
           extra:
             'This is an attribute that will be logged only by the child logger',
@@ -1767,7 +1740,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: true,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -1790,7 +1762,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -1834,7 +1805,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -1857,7 +1827,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {
           aws_account_id: '123456789012',
           aws_region: 'eu-west-1',
@@ -1887,7 +1856,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {
           aws_account_id: '123456789012',
           aws_region: 'eu-west-1',
@@ -1928,7 +1896,6 @@ describe('Class: Logger', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -2016,7 +1983,6 @@ describe('Class: Logger', () => {
       expect(childLogger).toEqual({
         ...parentLogger,
         console: expect.any(Console),
-        logsSampled: expect.any(Boolean),
       });
 
       expect(childLogger).toEqual(

@@ -55,7 +55,6 @@ describe('Middy middleware', () => {
         // Assess
         expect(logger).toEqual(
           expect.objectContaining({
-            logsSampled: false,
             persistentLogAttributes: {},
             powertoolLogData: {
               sampleRateValue: undefined,
@@ -94,7 +93,6 @@ describe('Middy middleware', () => {
 
         // Assess
         const expectation = expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: undefined,

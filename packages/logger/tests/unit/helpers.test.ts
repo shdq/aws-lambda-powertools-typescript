@@ -44,7 +44,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: undefined,
@@ -66,7 +65,6 @@ describe('Helper: createLogger function', () => {
       const loggerOptions: ConstructorOptions = {
         logLevel: 'WARN',
         serviceName: 'my-lambda-service',
-        sampleRateValue: 1,
         logFormatter: new PowertoolsLogFormatter(),
         customConfigService: new EnvironmentVariablesService(),
         persistentLogAttributes: {
@@ -93,14 +91,12 @@ describe('Helper: createLogger function', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: true,
         persistentLogAttributes: {
           awsAccountId: '123456789',
         },
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: 'prod',
-          sampleRateValue: 1,
           serviceName: 'my-lambda-service',
         },
       });
@@ -130,7 +126,6 @@ describe('Helper: createLogger function', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -154,7 +149,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: undefined,
@@ -183,7 +177,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: undefined,
@@ -212,7 +205,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: undefined,
@@ -241,7 +233,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: undefined,
@@ -280,7 +271,6 @@ describe('Helper: createLogger function', () => {
         logLevelThresholds: {
           ...logLevelThresholds,
         },
-        logsSampled: false,
         persistentLogAttributes: {},
         powertoolLogData: {
           awsRegion: 'eu-west-1',
@@ -304,7 +294,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: true,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: 1,
@@ -359,7 +348,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: undefined,
@@ -395,7 +383,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {
             aws_account_id: '123456789012',
             aws_region: 'eu-west-1',
@@ -431,7 +418,6 @@ describe('Helper: createLogger function', () => {
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toEqual(
         expect.objectContaining({
-          logsSampled: false,
           persistentLogAttributes: {},
           powertoolLogData: {
             sampleRateValue: undefined,
