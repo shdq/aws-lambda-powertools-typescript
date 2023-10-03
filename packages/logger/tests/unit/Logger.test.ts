@@ -2146,4 +2146,30 @@ describe('Class: Logger', () => {
       );
     });
   });
+
+  describe('Feature: Sampling debug logs', () => {
+    test('when sampling debug logs is enabled it DOES change log level to DEBUG', () => {
+      // Prepare && Act
+      const logger: Logger = new Logger({
+        logLevel: 'ERROR',
+        sampleRateValue: 1,
+      });
+
+      // Assess
+      expect(logger.level).toBe(8);
+      expect(logger.getLevelName()).toBe('DEBUG');
+    });
+
+    test('when sampling rate is set to zero it DOES NOT changes log level', () => {
+      // Prepare && Act
+      const logger: Logger = new Logger({
+        logLevel: 'ERROR',
+        sampleRateValue: 0,
+      });
+
+      // Assess
+      expect(logger.level).toBe(20);
+      expect(logger.getLevelName()).toBe('ERROR');
+    });
+  });
 });
