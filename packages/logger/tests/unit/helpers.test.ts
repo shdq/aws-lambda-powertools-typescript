@@ -46,7 +46,7 @@ describe('Helper: createLogger function', () => {
         expect.objectContaining({
           persistentLogAttributes: {},
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: '',
             serviceName: 'hello-world',
@@ -97,6 +97,7 @@ describe('Helper: createLogger function', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: 'prod',
+          sampleRateValue: 0,
           serviceName: 'my-lambda-service',
         },
       });
@@ -130,7 +131,7 @@ describe('Helper: createLogger function', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'service_undefined',
         },
       });
@@ -151,7 +152,7 @@ describe('Helper: createLogger function', () => {
         expect.objectContaining({
           persistentLogAttributes: {},
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: '',
             serviceName: 'hello-world',
@@ -179,7 +180,7 @@ describe('Helper: createLogger function', () => {
         expect.objectContaining({
           persistentLogAttributes: {},
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: '',
             serviceName: 'my-backend-service',
@@ -207,7 +208,7 @@ describe('Helper: createLogger function', () => {
         expect.objectContaining({
           persistentLogAttributes: {},
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: '',
             serviceName: 'hello-world',
@@ -235,7 +236,7 @@ describe('Helper: createLogger function', () => {
         expect.objectContaining({
           persistentLogAttributes: {},
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: '',
             serviceName: 'hello-world',
@@ -275,7 +276,7 @@ describe('Helper: createLogger function', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -350,7 +351,7 @@ describe('Helper: createLogger function', () => {
         expect.objectContaining({
           persistentLogAttributes: {},
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: 'dev',
             serviceName: 'my-backend-service',
@@ -392,7 +393,7 @@ describe('Helper: createLogger function', () => {
             },
           },
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: '',
             serviceName: 'hello-world',
@@ -420,7 +421,7 @@ describe('Helper: createLogger function', () => {
         expect.objectContaining({
           persistentLogAttributes: {},
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: 'dev',
             serviceName: 'hello-world',

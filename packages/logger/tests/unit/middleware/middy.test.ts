@@ -57,7 +57,7 @@ describe('Middy middleware', () => {
           expect.objectContaining({
             persistentLogAttributes: {},
             powertoolLogData: {
-              sampleRateValue: undefined,
+              sampleRateValue: 0,
               awsRegion: 'eu-west-1',
               environment: '',
               lambdaContext: {
@@ -95,7 +95,7 @@ describe('Middy middleware', () => {
         const expectation = expect.objectContaining({
           persistentLogAttributes: {},
           powertoolLogData: {
-            sampleRateValue: undefined,
+            sampleRateValue: 0,
             awsRegion: 'eu-west-1',
             environment: '',
             lambdaContext: {
@@ -283,6 +283,7 @@ describe('Middy middleware', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'Lambda invocation event',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -350,6 +351,7 @@ describe('Middy middleware', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'Lambda invocation event',
+          sampling_rate: 0,
           service: 'my-backend-service',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -389,6 +391,7 @@ describe('Middy middleware', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'Lambda invocation event',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -428,6 +431,7 @@ describe('Middy middleware', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'This is an INFO log',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',

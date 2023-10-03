@@ -100,6 +100,7 @@ describe('Class: Logger', () => {
               JSON.stringify({
                 level: methodOfLogger.toUpperCase(),
                 message: 'foo',
+                sampling_rate: 0,
                 service: 'hello-world',
                 timestamp: '2016-06-20T12:08:10.000Z',
                 xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -128,6 +129,7 @@ describe('Class: Logger', () => {
               JSON.stringify({
                 level: methodOfLogger.toUpperCase(),
                 message: 'foo',
+                sampling_rate: 0,
                 service: 'hello-world',
                 timestamp: '2016-06-20T12:08:10.000Z',
                 xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -156,6 +158,7 @@ describe('Class: Logger', () => {
               JSON.stringify({
                 level: methodOfLogger.toUpperCase(),
                 message: 'foo',
+                sampling_rate: 0,
                 service: 'hello-world',
                 timestamp: '2016-06-20T12:08:10.000Z',
                 xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -184,6 +187,7 @@ describe('Class: Logger', () => {
               JSON.stringify({
                 level: methodOfLogger.toUpperCase(),
                 message: 'foo',
+                sampling_rate: 0,
                 service: 'hello-world',
                 timestamp: '2016-06-20T12:08:10.000Z',
                 xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -226,6 +230,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: methodOfLogger.toUpperCase(),
               message: 'foo',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -309,6 +314,7 @@ describe('Class: Logger', () => {
               JSON.stringify({
                 level: method.toUpperCase(),
                 message: 'foo',
+                sampling_rate: 0,
                 service: 'hello-world',
                 timestamp: '2016-06-20T12:08:10.000Z',
                 xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -350,6 +356,7 @@ describe('Class: Logger', () => {
                 function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
                 level: method.toUpperCase(),
                 message: 'foo',
+                sampling_rate: 0,
                 service: 'hello-world',
                 timestamp: '2016-06-20T12:08:10.000Z',
                 xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -434,6 +441,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: method.toUpperCase(),
               message: 'A log item without extra parameters',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -445,6 +453,7 @@ describe('Class: Logger', () => {
               level: method.toUpperCase(),
               message:
                 'A log item with a string as first parameter, and an object as second parameter',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -457,6 +466,7 @@ describe('Class: Logger', () => {
               level: method.toUpperCase(),
               message:
                 'A log item with a string as first parameter, and objects as other parameters',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -469,6 +479,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: method.toUpperCase(),
               message: 'A log item with an object as first parameters',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -481,6 +492,7 @@ describe('Class: Logger', () => {
               level: method.toUpperCase(),
               message:
                 'A log item with a string as first parameter, and an error as second parameter',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -500,6 +512,7 @@ describe('Class: Logger', () => {
               level: method.toUpperCase(),
               message:
                 'A log item with a string as first parameter, and an error with custom key as second parameter',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -517,6 +530,7 @@ describe('Class: Logger', () => {
               level: method.toUpperCase(),
               message:
                 'A log item with a string as first parameter, and a string as second parameter',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -529,6 +543,7 @@ describe('Class: Logger', () => {
               level: method.toUpperCase(),
               message:
                 'A log item with a string as first parameter, and an inline object as second parameter',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -541,6 +556,7 @@ describe('Class: Logger', () => {
               level: method.toUpperCase(),
               message:
                 'A log item with a string as first parameter, and an arbitrary object as second parameter',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -591,6 +607,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: method.toUpperCase(),
               message: 'foo',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -623,6 +640,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: method.toUpperCase(),
               message: 'foo',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -652,6 +670,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: method.toUpperCase(),
               message: 'foo',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
             })
@@ -693,6 +712,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: method.toUpperCase(),
               message: 'A log with a circular reference',
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -738,6 +758,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: methodOfLogger.toUpperCase(),
               message: message,
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -770,6 +791,7 @@ describe('Class: Logger', () => {
             JSON.stringify({
               level: methodOfLogger.toUpperCase(),
               message: message,
+              sampling_rate: 0,
               service: 'hello-world',
               timestamp: '2016-06-20T12:08:10.000Z',
               xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -816,7 +838,7 @@ describe('Class: Logger', () => {
               'arn:aws:lambda:eu-west-1:123456789012:function:foo-bar-function',
             memoryLimitInMB: 128,
           },
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -1079,6 +1101,7 @@ describe('Class: Logger', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'This is an INFO log with some context',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -1116,6 +1139,7 @@ describe('Class: Logger', () => {
         JSON.stringify({
           level: 'INFO',
           message: 'An INFO log without context!',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -1132,6 +1156,7 @@ describe('Class: Logger', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'This is an INFO log with some context',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -1173,6 +1198,7 @@ describe('Class: Logger', () => {
         JSON.stringify({
           level: 'INFO',
           message: 'An INFO log without context!',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -1189,6 +1215,7 @@ describe('Class: Logger', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'This is an INFO log with some context',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -1324,6 +1351,7 @@ describe('Class: Logger', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'Lambda invocation event',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -1374,6 +1402,7 @@ describe('Class: Logger', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'Lambda invocation event',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -1435,6 +1464,7 @@ describe('Class: Logger', () => {
           function_request_id: 'c6af9ac6-7b61-11e6-9a41-93e812345678',
           level: 'INFO',
           message: 'memberVariable:someValue',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -1588,7 +1618,7 @@ describe('Class: Logger', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'parent-service-name',
         },
       });
@@ -1697,7 +1727,7 @@ describe('Class: Logger', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -1722,7 +1752,7 @@ describe('Class: Logger', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -1766,7 +1796,7 @@ describe('Class: Logger', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -1809,7 +1839,7 @@ describe('Class: Logger', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -1838,7 +1868,7 @@ describe('Class: Logger', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -1868,7 +1898,7 @@ describe('Class: Logger', () => {
         powertoolLogData: {
           awsRegion: 'eu-west-1',
           environment: '',
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -1909,7 +1939,7 @@ describe('Class: Logger', () => {
               'arn:aws:lambda:eu-west-1:123456789012:function:foo-bar-function',
             memoryLimitInMB: 128,
           },
-          sampleRateValue: undefined,
+          sampleRateValue: 0,
           serviceName: 'hello-world',
         },
       });
@@ -2035,6 +2065,7 @@ describe('Class: Logger', () => {
         JSON.stringify({
           level: 'INFO',
           message: 'Lambda invocation event',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -2067,6 +2098,7 @@ describe('Class: Logger', () => {
           {
             level: 'INFO',
             message: 'Message with pretty identation',
+            sampling_rate: 0,
             service: 'hello-world',
             timestamp: '2016-06-20T12:08:10.000Z',
             xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',
@@ -2094,6 +2126,7 @@ describe('Class: Logger', () => {
         JSON.stringify({
           level: 'INFO',
           message: 'Message without pretty identation',
+          sampling_rate: 0,
           service: 'hello-world',
           timestamp: '2016-06-20T12:08:10.000Z',
           xray_trace_id: '1-5759e988-bd862e3fe1be46a994272793',

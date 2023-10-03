@@ -1,4 +1,3 @@
-import { randomInt } from 'node:crypto';
 import { Console } from 'node:console';
 import type { Context, Handler } from 'aws-lambda';
 import { Utility } from '@aws-lambda-powertools/commons';
@@ -493,7 +492,11 @@ class Logger extends Utility implements ClassThatLogs {
   }
 
   /**
-   * It sets the user-provided sample rate value.
+   * It sets sample rate value with the following prioprity:
+   * 1. Constructor value
+   * 2. Custom config service value
+   * 3. Environment variable value
+   * 4. Default value (zero)
    *
    * @param {number} [sampleRateValue]
    * @returns {void}
@@ -502,7 +505,8 @@ class Logger extends Utility implements ClassThatLogs {
     this.powertoolLogData.sampleRateValue =
       sampleRateValue ||
       this.getCustomConfigService()?.getSampleRateValue() ||
-      this.getEnvVarsService().getSampleRateValue();
+      this.getEnvVarsService().getSampleRateValue() ||
+      0;
   }
 
   /**
@@ -731,7 +735,7 @@ class Logger extends Utility implements ClassThatLogs {
       this.setSampleRateValue();
     }
 
-    return this.powertoolLogData.sampleRateValue as number;
+    return this.powertoolLogData.sampleRateValue;
   }
 
   /**
