@@ -1,4 +1,5 @@
 import { Console } from 'node:console';
+import { randomInt } from 'node:crypto';
 import type { Context, Handler } from 'aws-lambda';
 import { Utility } from '@aws-lambda-powertools/commons';
 import { LogFormatterInterface, PowertoolsLogFormatter } from './formatter';
@@ -565,10 +566,7 @@ class Logger extends Utility implements ClassThatLogs {
    */
   private configureSampling(): void {
     const sampleRateValue = this.getSampleRateValue();
-    if (
-      sampleRateValue &&
-      Math.random() <= parseFloat(sampleRateValue.toString())
-    ) {
+    if (sampleRateValue && randomInt(0, 100) / 100 <= sampleRateValue) {
       this.debug('Setting log level to DEBUG due to sampling rate');
       this.setLogLevel('DEBUG');
     }

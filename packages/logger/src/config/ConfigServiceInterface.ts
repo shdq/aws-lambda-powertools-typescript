@@ -38,7 +38,7 @@ interface ConfigServiceInterface {
   /**
    * It returns the value of the POWERTOOLS_LOGGER_SAMPLE_RATE environment variable.
    *
-   * @returns {string|undefined}
+   * @returns {number|undefined}
    */
   getSampleRateValue(): number | undefined;
 
