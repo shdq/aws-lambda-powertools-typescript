@@ -499,15 +499,33 @@ class Logger extends Utility implements ClassThatLogs {
    * 3. Environment variable value
    * 4. Default value (zero)
    *
+   * @private
    * @param {number} [sampleRateValue]
    * @returns {void}
    */
-  public setSampleRateValue(sampleRateValue?: number): void {
-    this.powertoolLogData.sampleRateValue =
-      sampleRateValue ||
-      this.getCustomConfigService()?.getSampleRateValue() ||
-      this.getEnvVarsService().getSampleRateValue() ||
-      0;
+  private setInitialSampleRate(sampleRateValue?: number): void {
+    const constructorValue = sampleRateValue;
+    if (this.isValidSampleRate(constructorValue)) {
+      this.powertoolLogData.sampleRateValue = constructorValue;
+
+      return;
+    }
+
+    const customConfigValue =
+      this.getCustomConfigService()?.getSampleRateValue();
+    if (this.isValidSampleRate(customConfigValue)) {
+      this.powertoolLogData.sampleRateValue = customConfigValue;
+
+      return;
+    }
+    const envVarsValue = this.getEnvVarsService().getSampleRateValue();
+    if (this.isValidSampleRate(envVarsValue)) {
+      this.powertoolLogData.sampleRateValue = envVarsValue;
+
+      return;
+    }
+
+    this.powertoolLogData.sampleRateValue = 0;
   }
 
   /**
@@ -562,7 +580,7 @@ class Logger extends Utility implements ClassThatLogs {
   }
 
   /**
-   *
+   * It dynamically sets log level based on sampling rate value
    */
   private configureSampling(): void {
     const sampleRateValue = this.getSampleRateValue();
@@ -730,7 +748,7 @@ class Logger extends Utility implements ClassThatLogs {
    */
   private getSampleRateValue(): number {
     if (!this.powertoolLogData.sampleRateValue) {
-      this.setSampleRateValue();
+      this.setInitialSampleRate();
     }
 
     return this.powertoolLogData.sampleRateValue;
@@ -747,6 +765,23 @@ class Logger extends Utility implements ClassThatLogs {
     logLevel?: LogLevel | string
   ): logLevel is Uppercase<LogLevel> {
     return typeof logLevel === 'string' && logLevel in this.logLevelThresholds;
+  }
+
+  /**
+   * It returns true and type guards the sample rate value if a given value is valid.
+   *
+   * @param sampleRateValue
+   * @private
+   * @returns {boolean}
+   */
+  private isValidSampleRate(
+    sampleRateValue?: number
+  ): sampleRateValue is number {
+    return (
+      typeof sampleRateValue === 'number' &&
+      0 <= sampleRateValue &&
+      sampleRateValue <= 1
+    );
   }
 
   /**
@@ -938,7 +973,7 @@ class Logger extends Utility implements ClassThatLogs {
     this.setConsole();
     this.setCustomConfigService(customConfigService);
     this.setInitialLogLevel(logLevel);
-    this.setSampleRateValue(sampleRateValue);
+    this.setInitialSampleRate(sampleRateValue);
     this.setLogFormatter(logFormatter);
     this.setPowertoolLogData(serviceName, environment);
     this.setLogEvent();
@@ -971,7 +1006,6 @@ class Logger extends Utility implements ClassThatLogs {
           environment ||
           this.getCustomConfigService()?.getCurrentEnvironment() ||
           this.getEnvVarsService().getCurrentEnvironment(),
-        sampleRateValue: this.getSampleRateValue(),
         serviceName:
           serviceName ||
           this.getCustomConfigService()?.getServiceName() ||
