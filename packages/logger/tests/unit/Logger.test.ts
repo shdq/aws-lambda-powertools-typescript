@@ -2218,7 +2218,7 @@ describe('Class: Logger', () => {
       // Prepare
       class MyCustomEnvironmentVariablesService extends EnvironmentVariablesService {
         private sampleRateValue = 1;
-        public getSampleRateValue() {
+        public getSampleRateValue(): number {
           return this.sampleRateValue;
         }
       }

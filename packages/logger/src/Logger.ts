@@ -493,42 +493,6 @@ class Logger extends Utility implements ClassThatLogs {
   }
 
   /**
-   * It sets sample rate value with the following prioprity:
-   * 1. Constructor value
-   * 2. Custom config service value
-   * 3. Environment variable value
-   * 4. Default value (zero)
-   *
-   * @private
-   * @param {number} [sampleRateValue]
-   * @returns {void}
-   */
-  private setInitialSampleRate(sampleRateValue?: number): void {
-    const constructorValue = sampleRateValue;
-    if (this.isValidSampleRate(constructorValue)) {
-      this.powertoolLogData.sampleRateValue = constructorValue;
-
-      return;
-    }
-
-    const customConfigValue =
-      this.getCustomConfigService()?.getSampleRateValue();
-    if (this.isValidSampleRate(customConfigValue)) {
-      this.powertoolLogData.sampleRateValue = customConfigValue;
-
-      return;
-    }
-    const envVarsValue = this.getEnvVarsService().getSampleRateValue();
-    if (this.isValidSampleRate(envVarsValue)) {
-      this.powertoolLogData.sampleRateValue = envVarsValue;
-
-      return;
-    }
-
-    this.powertoolLogData.sampleRateValue = 0;
-  }
-
-  /**
    * It checks whether the current Lambda invocation event should be printed in the logs or not.
    *
    * @private
@@ -909,6 +873,42 @@ class Logger extends Utility implements ClassThatLogs {
 
       return;
     }
+  }
+
+  /**
+   * It sets sample rate value with the following prioprity:
+   * 1. Constructor value
+   * 2. Custom config service value
+   * 3. Environment variable value
+   * 4. Default value (zero)
+   *
+   * @private
+   * @param {number} [sampleRateValue]
+   * @returns {void}
+   */
+  private setInitialSampleRate(sampleRateValue?: number): void {
+    const constructorValue = sampleRateValue;
+    if (this.isValidSampleRate(constructorValue)) {
+      this.powertoolLogData.sampleRateValue = constructorValue;
+
+      return;
+    }
+
+    const customConfigValue =
+      this.getCustomConfigService()?.getSampleRateValue();
+    if (this.isValidSampleRate(customConfigValue)) {
+      this.powertoolLogData.sampleRateValue = customConfigValue;
+
+      return;
+    }
+    const envVarsValue = this.getEnvVarsService().getSampleRateValue();
+    if (this.isValidSampleRate(envVarsValue)) {
+      this.powertoolLogData.sampleRateValue = envVarsValue;
+
+      return;
+    }
+
+    this.powertoolLogData.sampleRateValue = 0;
   }
 
   /**
